@@ -29,6 +29,9 @@
     .button.no {
       background-color: #f44336;
     }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -38,30 +41,39 @@
   
   <img src="https://i.imgur.com/JHTocYe.gif" alt="Oso pidiendo perdón" style="display: block; margin: 0 auto;">
   
-  <div class="message">¿ME PERDONAS MI AMORCITA HERMOSA??</div>
+  <div class="message" id="initialMessage">¿ME PERDONAS MI AMORCITA HERMOSA??</div>
   
-  <div class="buttons">
+  <div class="buttons" id="initialButtons">
     <a href="#" id="yesButton" class="button">Sí</a>
     <a href="#" id="noButton" class="button no">No</a>
   </div>
 
-  <script>
-    // Al hacer clic en el botón "Sí"
-    document.getElementById('yesButton').addEventListener('click', function(event) {
-      event.preventDefault(); // Evita que se siga el enlace
-      // Abre una nueva ventana con el mensaje y el nuevo GIF
-      window.open('data:text/html,<html><body style="text-align: center; font-family: Arial, sans-serif;"><h1>Gracias mi amorcito, te amo y te amaré siempre 💖</h1><img src="https://i.imgur.com/a5aJQvU.gif" alt="Te Amo GIF" style="width: 200px;"><br><p>Te amo muchísimo!</p></body></html>', '_blank');
-    });
+  <div class="message hidden" id="thankYouMessage">
+    Gracias mi amorcito, te amo y te amaré siempre 💖
+  </div>
+  
+  <div class="buttons hidden" id="thankYouButtons">
+    <img src="https://i.imgur.com/a5aJQvU.gif" alt="Te Amo GIF" style="width: 200px;">
+    <br><p>Te amo muchísimo!</p>
+  </div>
+  
+  <div class="message hidden" id="sureMessage">
+    ¿Segura?
+  </div>
+  
+  <div class="buttons hidden" id="sureButtons">
+    <img src="https://i.imgur.com/wXq6hIn.gif" alt="Seguro GIF" style="width: 200px;">
+    <br><a href="#" id="yesButton2" class="button">Sí</a>
+    <a href="#" id="noButton2" class="button no">No</a>
+  </div>
 
-    // Al hacer clic en el botón "No"
-    let noButtonClickCount = 0; // Contador para aumentar el tamaño de la letra en "No"
-    
-    document.getElementById('noButton').addEventListener('click', function(event) {
-      event.preventDefault(); // Evita que se siga el enlace
-      noButtonClickCount++; // Aumenta el contador
-      // Abre una nueva ventana con el mensaje y el nuevo GIF de "No"
-      window.open('data:text/html,<html><body style="text-align: center; font-family: Arial, sans-serif;"><h1>¿Segura?</h1><img src="https://i.imgur.com/wXq6hIn.gif" alt="Seguro GIF" style="width: 200px;"><br><div class="buttons"><a href="#" id="yesButton" class="button">Sí</a><a href="#" id="noButton" class="button no" style="font-size: ' + (18 + noButtonClickCount * 5) + 'px;">No</a></div></body></html>', '_blank');
-    });
-  </script>
-</body>
-</html>
+  <script>
+    // Función para ocultar y mostrar elementos
+    function toggleVisibility(elementsToHide, elementsToShow) {
+      elementsToHide.forEach(function(element) {
+        document.getElementById(element).classList.add('hidden');
+      });
+      elementsToShow.forEach(function(element) {
+        document.getElementById(element).classList.remove('hidden');
+      });
+    }
