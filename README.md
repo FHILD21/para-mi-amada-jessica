@@ -77,3 +77,42 @@
         document.getElementById(element).classList.remove('hidden');
       });
     }
+
+    // Al hacer clic en el botón "Sí" (primero)
+    document.getElementById('yesButton').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleVisibility(
+        ['initialMessage', 'initialButtons'],  // Ocultar el mensaje y botones iniciales
+        ['thankYouMessage', 'thankYouButtons'] // Mostrar el mensaje y botones de agradecimiento
+      );
+    });
+
+    // Al hacer clic en el botón "No" (primero)
+    let noButtonClickCount = 0;
+    document.getElementById('noButton').addEventListener('click', function(event) {
+      event.preventDefault();
+      noButtonClickCount++;
+      toggleVisibility(
+        ['initialMessage', 'initialButtons'],  // Ocultar el mensaje y botones iniciales
+        ['sureMessage', 'sureButtons']         // Mostrar el mensaje de confirmación
+      );
+    });
+
+    // Al hacer clic en el botón "Sí" (segundo)
+    document.getElementById('yesButton2').addEventListener('click', function(event) {
+      event.preventDefault();
+      toggleVisibility(
+        ['sureMessage', 'sureButtons'],   // Ocultar el mensaje y botones de "segura"
+        ['thankYouMessage', 'thankYouButtons']  // Mostrar el mensaje y botones de agradecimiento
+      );
+    });
+
+    // Al hacer clic en el botón "No" (segundo)
+    document.getElementById('noButton2').addEventListener('click', function(event) {
+      event.preventDefault();
+      // Aquí podrías agregar una acción si quieres manejar el caso de "No" nuevamente
+      alert("Ok, lo pensaré mejor...");
+    });
+  </script>
+</body>
+</html>
